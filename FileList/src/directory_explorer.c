@@ -8,9 +8,9 @@
 #include <sys/stat.h> 
 #include <errno.h>
 
-#include "linked_list.h"
-#include "json.h"
-#include "logger.h"
+#include <dataStructure/linked_list.h>
+#include <JSON/json.h>
+#include <logger.h>
 
 #define FILE_PATH_SEPARATOR "/"
 

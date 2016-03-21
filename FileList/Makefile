@@ -1,29 +1,38 @@
 # Project: FileList
-# Makefile created by Dev-C++ 5.11
 
 CPP      = g++ -D__DEBUG__
 CC       = gcc -D__DEBUG__
-IFLAGS	 = -I ../Lib
-LFLAGS	 = -L ../Lib -lsandbox
-OBJ      = filelist.o directory_explorer.o
-LINKOBJ  = filelist.o directory_explorer.o
-BIN      = FileList
+IFLAGS   = -I ../../Lib/src
+LFLAGS   = -L ../../Lib/bin -lsandbox
 CXXFLAGS = $(CXXINCS) -g3
-CFLAGS   = $(INCS) -g3
+CFLAGS   = $(INCS) -g3 
 RM       = rm -f
+OBJDIR   = obj
+OBJ      = $(OBJDIR)/directory_explorer.o $(OBJDIR)/filelist.o
+LINKOBJ  = $(OBJDIR)/*.o
+BINDIR	 = ./
+BIN	 = $(BINDIR)/FileList
+
+SUBDIRS = 
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before $(BIN) all-after
+define script
+cd $(1); \
+$(MAKE) -f Makefile OBJDIR=../$(OBJDIR)
+
+endef
+
+all: all-before subdirs $(BIN) all-after
+
+subdirs:
+	$(foreach dir, $(SUBDIRS), $(call script,$(dir)))
 
 clean: clean-custom
-	${RM} $(OBJ) $(BIN)
+	${RM} $(OBJ) $(BIN) $(SHAREDLIB) $(OBJDIR)/*
 
 $(BIN): $(OBJ)
-	$(CC) $(LINKOBJ) -o $(BIN) $(LFLAGS)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LFLAGS) $(IFLAGS)
 
-filelist.o: filelist.c
-	$(CC) $(IFLAGS) $(LFLAGS) -c filelist.c -o filelist.o $(CFLAGS)
-
-directory_explorer.o: directory_explorer.c
-	$(CC) $(IFLAGS) $(LFLAGS) -c directory_explorer.c -o directory_explorer.o $(CFLAGS)
+$(OBJDIR)/%.o: %.c %.h
+	$(CC) $(CFLAGS) -c -o $@ $< $(IFLAGS)

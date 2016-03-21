@@ -1,7 +1,7 @@
 #include "json.h"
-#include "hash_map.h"
-#include "logger.h"
-#include "string_buffer.h"
+#include <dataStructure/hash_map.h>
+#include <logger.h>
+#include <string_buffer.h>
 #include <stdio.h>
 #include <string.h>
 
