@@ -9,8 +9,7 @@ typedef enum e_logLevel {
 	NB_LOGLEVEL
 } t_logLevel;
 
-
-void doLog(t_logLevel a_level, char * a_file, int a_line, char * a_fmt, ...);
+extern void doLog(t_logLevel a_level, char * a_file, int a_line, char * a_fmt, ...);
 
 #define MAX_LOG_LEVEL LOG_LEVEL_ERROR
 

@@ -11,8 +11,9 @@ typedef struct s_stringBuffer {
 	char * m_string;
 } t_stringBuffer; 
 
-t_stringBuffer * stringBufferCreate();
-void stringBufferFree();
-void stringBufferWrite(t_stringBuffer * a_stringBuffer, char * a_fmt, ...);
-char * stringBufferGetString(t_stringBuffer * a_stringBuffer);
+extern t_stringBuffer * stringBufferCreate();
+extern void stringBufferFree();
+extern void stringBufferWrite(t_stringBuffer * a_stringBuffer, char * a_fmt, ...);
+extern char * stringBufferGetString(t_stringBuffer * a_stringBuffer);
+
 #endif /* __STRING_BUFFER_H__ */

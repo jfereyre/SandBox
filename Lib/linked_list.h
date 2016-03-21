@@ -12,9 +12,9 @@ typedef struct s_linkedList {
 	struct s_linkedListElement * m_tail;
  } t_linkedList;
 
-t_linkedList * linkedListCreate();
-void linkedListPush(t_linkedList * a_list, void * a_data);
-void * linkedListPop(t_linkedList * a_list);
-void linkedListInsert(t_linkedList * a_list, t_linkedListElement * a_previousElement, void * a_data);
+extern t_linkedList * linkedListCreate();
+extern void linkedListPush(t_linkedList * a_list, void * a_data);
+extern void * linkedListPop(t_linkedList * a_list);
+extern void linkedListInsert(t_linkedList * a_list, t_linkedListElement * a_previousElement, void * a_data);
 
 #endif /* __LINKED_LIST_H__ */
