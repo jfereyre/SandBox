@@ -1,8 +1,8 @@
 #ifndef __JSON_H__
 #define __JSON_H__
 
-#include <dataStructure/hash_map.h>
-#include <string_buffer.h>
+#include "../dataStructure/hash_map.h"
+#include "../string_buffer.h"
 
 typedef enum e_JSONValueType { STRING, INTEGER, OBJECT, ARRAY } t_JSONValueType;
 

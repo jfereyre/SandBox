@@ -2,17 +2,17 @@
 
 RM       = rm -f
 SUBDIRS  = Lib FileList
+OBJDIR   = $(shell pwd)/obj
+BINDIR   = $(shell pwd)/bin
 
-.PHONY: all all-before all-after clean clean-custom
+.PHONY: subdirs $(SUBDIRS) clean
 
-define script
-cd $(1); \
-$(MAKE) -f Makefile
+subdirs: $(SUBDIRS)
 
-endef
+$(SUBDIRS):
+	$(MAKE) -C $@ OBJDIR=$(OBJDIR) BINDIR=$(BINDIR)
 
-all: all-before subdirs all-after
+FileList : Lib
 
-subdirs:
-	$(foreach dir, $(SUBDIRS), $(call script,$(dir)))
-
+clean:
+	$(RM) $(OBJDIR)/* $(BINDIR)/*

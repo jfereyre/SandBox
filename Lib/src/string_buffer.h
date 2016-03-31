@@ -15,5 +15,6 @@ extern t_stringBuffer * stringBufferCreate();
 extern void stringBufferFree();
 extern void stringBufferWrite(t_stringBuffer * a_stringBuffer, char * a_fmt, ...);
 extern char * stringBufferGetString(t_stringBuffer * a_stringBuffer);
+extern void stringBufferConcat(t_stringBuffer * a_stringBuffer, t_stringBuffer * a_secondstringBuffer);
 
 #endif /* __STRING_BUFFER_H__ */

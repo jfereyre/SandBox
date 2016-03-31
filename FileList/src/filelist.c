@@ -1,8 +1,8 @@
 #include <stdio.h>
  
-#include <dataStructure/linked_list.h>
-#include <JSON/json.h>
-#include <logger.h>
+#include "../../Lib/src/dataStructure/linked_list.h"
+#include "../../Lib/src/JSON/json.h"
+#include "../../Lib/src/logger.h"
 #include "directory_explorer.h"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */

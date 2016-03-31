@@ -1,8 +1,8 @@
 #ifndef __DIRECTORY_EXPLORER_H__
 #define __DIRECTORY_EXPLORER_H__
  
-#include <dataStructure/linked_list.h>
-#include <JSON/json.h>
+#include "../../Lib/src/dataStructure/linked_list.h"
+#include "../../Lib/src/JSON/json.h"
 
 t_JSONObject exploreDirectories(t_linkedList * a_directoryList);
 
