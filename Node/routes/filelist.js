@@ -18,7 +18,8 @@ exploreDir = function(a_directoryPath) {
 			l_directoryToExplore.push(l_fullDirectoryItemPath);
 		} else {
 			l_fileList.push({	path : l_fullDirectoryItemPath,
-								name : l_directoryItemName});	
+								name : l_directoryItemName,
+								extension : l_directoryItemName.split('.').pop()});	
 		}
 	}
 	
@@ -34,7 +35,7 @@ exploreDir = function(a_directoryPath) {
 
 /* GET file listing. */
 router.get('/', function(req, res, next) {
-	res.json({files : exploreDir('C:\\Users\\A624072\\Downloads').slice(0,1)});
+	res.json({files : exploreDir('C:\\Users\\A624072\\Downloads')});
 });
 
 module.exports = router;
