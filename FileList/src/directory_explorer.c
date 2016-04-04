@@ -57,11 +57,11 @@ void exploreDirectory(char * m_directory, t_JSONArray a_fileList) {
 		LOG_ERROR("Couldn't open the directory");
 	}
 	
-	char * l_dirToInspect = linkedListPop(l_explorationDirectoryList);
+	char * l_dirToInspect = (char*) linkedListPop(l_explorationDirectoryList);
 	
 	while (l_dirToInspect != NULL ) {
 		exploreDirectory(l_dirToInspect, a_fileList);
-		l_dirToInspect = linkedListPop(l_explorationDirectoryList);
+		l_dirToInspect = (char *)linkedListPop(l_explorationDirectoryList);
 	}
 }
 
@@ -72,7 +72,7 @@ void exploreDirectoryList(t_linkedList * a_directoryList, t_JSONArray a_fileList
 	t_linkedListElement * l_currentDirectory = a_directoryList ->m_head;
 	
 	while ( l_currentDirectory != NULL ) {
-		char * l_currentDirectoryPath = l_currentDirectory->m_data;
+		char * l_currentDirectoryPath = (char *)l_currentDirectory->m_data;
 		exploreDirectory(l_currentDirectoryPath, a_fileList);
 		l_currentDirectory = l_currentDirectory->m_next;
 	}

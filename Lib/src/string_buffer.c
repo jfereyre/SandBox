@@ -29,9 +29,10 @@ t_stringBuffer * stringBufferCreate() {
 }
 
 void stringBufferCheckSizeAndWrite(t_stringBuffer * a_stringBuffer, char * a_newData, size_t a_additionalSize) {
-	if ( a_additionalSize + a_stringBuffer->m_usedSize > a_stringBuffer->m_size ) {
-		int l_nbExtension = ( a_additionalSize / DEFAULT_STRING_BUFFER_SIZE );
-		int l_notComplete = ( a_additionalSize >=DEFAULT_STRING_BUFFER_SIZE ) && (( a_additionalSize % DEFAULT_STRING_BUFFER_SIZE ) != 0);
+	size_t l_newFullSize = a_additionalSize + a_stringBuffer->m_usedSize + 1;
+	if ( l_newFullSize > a_stringBuffer->m_size ) {
+		int l_nbExtension = ( a_additionalSize + 1 / DEFAULT_STRING_BUFFER_SIZE );
+		int l_notComplete = ( a_additionalSize +1  >=DEFAULT_STRING_BUFFER_SIZE ) && (( a_additionalSize + 1 % DEFAULT_STRING_BUFFER_SIZE ) != 0);
 		l_nbExtension = (l_nbExtension == 0 ? 1 : l_nbExtension + l_notComplete);
 		int l_biggerStringBufferSize = a_stringBuffer->m_size + l_nbExtension * DEFAULT_STRING_BUFFER_SIZE;
 		

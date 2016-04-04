@@ -23,14 +23,14 @@ typedef struct s_hashedValues {
 /**
  * Local function declarations
  **/
-unsigned long hash(unsigned char * str);
+unsigned long hash(char * str);
 t_hashedValues * hashedValuesCreate();
 t_hashedKey * hashedKeyCreate();
 
 /**
  * Function used to compute hash value of key
  **/
-unsigned long hash(unsigned char *str)
+unsigned long hash(char *str)
 {
     unsigned long hash = 5381;
     int c;

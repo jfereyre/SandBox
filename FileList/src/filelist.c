@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 	if ( l_fileList != NULL ) {
 		
 		t_linkedList * l_directoryList = linkedListCreate();
-		linkedListPush(l_directoryList, "C:\\");
+		linkedListPush(l_directoryList, (void *)"C:\\Users\\A624072\\Downloads");
 		LOG_DEBUG("before dumpJSONObject call.");
 		printf("%s", stringBufferGetString(dumpJSONObject(exploreDirectories(l_directoryList))));
 		LOG_DEBUG("after dumpJSONObject call.");

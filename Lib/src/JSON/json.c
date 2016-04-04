@@ -107,10 +107,10 @@ t_stringBuffer * dumpJSONData(t_JSONData * a_jsonData) {
 		stringBufferConcat(l_jsonBuffer, dumpJSONObject(a_jsonData));
 	} else if ( a_jsonData->m_type == INTEGER ) {
 		LOG_DEBUG("Dump JSON data INTEGER");
-		stringBufferWrite(l_jsonBuffer, "'%d'", a_jsonData->m_integer);
+		stringBufferWrite(l_jsonBuffer, "\"%d\"", a_jsonData->m_integer);
 	}  else if ( a_jsonData->m_type == STRING ) {
 		LOG_DEBUG("Dump JSON data STRING");
-		stringBufferWrite(l_jsonBuffer, "'%s'", a_jsonData->m_string);
+		stringBufferWrite(l_jsonBuffer, "\"%s\"", a_jsonData->m_string);
 	} else if ( a_jsonData->m_type == ARRAY ) {
 		LOG_DEBUG("Dump JSON data ARRAY");
 		stringBufferWrite(l_jsonBuffer, "[");
@@ -145,7 +145,7 @@ t_stringBuffer * dumpJSONObject(t_JSONObject a_object) {
 		// Walk through the list of attributes defined in the JSON object.
 		while ( l_keyListElement != NULL ) {
 			
-			char * l_key = l_keyListElement->m_data;
+			char * l_key = (char *)l_keyListElement->m_data;
 			
 			t_linkedList * l_valueList = hashMapGetValues(a_object->m_jsonObject, l_key);
 			
@@ -157,7 +157,7 @@ t_stringBuffer * dumpJSONObject(t_JSONObject a_object) {
 				while ( l_currentValue != NULL ) {
 					
 					t_JSONData * l_JSONData = (t_JSONData *)(l_currentValue->m_data);
-					stringBufferWrite(l_jsonBuffer, "'%s' : ", l_key);
+					stringBufferWrite(l_jsonBuffer, "\"%s\" : ", l_key);
 					stringBufferConcat(l_jsonBuffer, dumpJSONData(l_JSONData));
 					l_currentValue = l_currentValue->m_next;
 					
