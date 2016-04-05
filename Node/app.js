@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var filelist = require('./routes/filelist');
 var filemetadata = require('./routes/filemetadata');
+var videoplayer = require('./routes/videoplayer');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/filelist', filelist);
 app.use('/filemetadata', filemetadata);
+app.use('/videoplayer', videoplayer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

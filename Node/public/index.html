@@ -32,7 +32,8 @@
 				  <tr ng-repeat = "file in filesToDisplay()">
 					<td>{[{ file.name }]}</td>
 					<td>
-						<div ng-show="file.usageName=='video'">coucou video</div>
+						<div ng-show="file.usageName=='picture'">coucou picture</div>
+						<div ng-show="file.usageName=='video'"><a class="btn btn-xs btn-success" ng-click="play()"><span class="glyphicon glyphicon-play"></span> Play</a></div>
 						<div ng-show="file.usageName=='texte'">coucou txt</div>
 					</td>
 				 </tr>

@@ -35,7 +35,8 @@ exploreDir = function(a_directoryPath) {
 
 /* GET file listing. */
 router.get('/', function(req, res, next) {
-	res.json({files : exploreDir('C:\\Users\\A624072\\Downloads')});
+	// res.json({files : exploreDir('C:\\Users\\A624072\\Downloads')});
+	res.json({files : exploreDir('C:\\Users\\jerome\\Downloads')});
 });
 
 module.exports = router;

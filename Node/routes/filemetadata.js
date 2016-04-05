@@ -3,7 +3,8 @@ var router = express.Router();
 var assert = require('assert');
 var loki = require('lokijs');
 
-var g_DBPath = 'C:\\Users\\A624072\\AppData\\Local\\Temp\\DB\\filemetadata.db';
+// var g_DBPath = 'C:\\Users\\A624072\\AppData\\Local\\Temp\\DB\\filemetadata.db';
+var g_DBPath = 'C:\\Users\\jerome\\AppData\\Local\\Temp\\DB\\filemetadata.db';
 var g_Db = new loki(g_DBPath, {
 	autoload: true,
 	autoloadCallback : loadHandler,
