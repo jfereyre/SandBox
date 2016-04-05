@@ -4,29 +4,120 @@
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="testJerome">
 <head>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
   <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
   <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.5.js"></script>
   <script src="core.js"></script>
+  <script src="files.js"></script>
+  <script src="fileusages.js"></script>
+  <script src="videousage.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <div ng-controller="filesPaginationController">
-    <table border=1 width="100%">
-      <tr>
-        <th>Id</th>
-        <th>File Name</th>
-      </tr>
-      <tr ng-repeat = "file in filesToDisplay()">
-        <td>{[{ file._id }]}</td>
-        <td>{[{ file.name }]}</td>
-     </tr>
-    </table>
-    <uib-pagination total-items="nbItems" num-pages="nbPages" ng-model="currentPage" max-size="maxSize" items-per-page="itemsPerPage" ng-change="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
-  </div>
+	<md-content>
+		<md-tabs md-dynamic-height="" md-border-bottom="">
+		<md-tab label="Files">
+			<md-content class="md-padding">
+				<div ng-controller="filesPaginationController">
+				<table border=1 width="100%">
+				  <tr>
+					<th>File Name</th>
+				  </tr>
+				  <tr ng-repeat = "file in filesToDisplay()">
+					<td>{[{ file.name }]}</td>
+					<td>
+						<div ng-show="file.usageName=='video'">coucou video</div>
+						<div ng-show="file.usageName=='texte'">coucou txt</div>
+					</td>
+				 </tr>
+				</table>
+				<div class="fluid row row-centered">
+					<uib-pagination total-items="nbItems" num-pages="nbPages" ng-model="currentPage" max-size="maxSize" items-per-page="itemsPerPage" ng-change="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+				</div>
+				<div class="fluid row row-centered">
+					<a class="btn btn-success" ng-click="refreshFileList()"><span class="glyphicon glyphicon-refresh"></span> Refresh file list</a>
+				</div>
+				</div>
+			</md-content>
+		</md-tab>
+		<md-tab label="File Usages">
+			<md-content class="md-padding">
+				<div ng-controller="fileUsagesController">
+				<div class="container fluid">
+					<div class="fluid row row-centered">
+						<div class="col-xs-5 col-centered">
+							<label>Usage name</label>
+							<select ng-model="selectedUsage" ng-options="x for x in usageNames" ng-disabled="newUsageName" ng-change="selectUsage()"></select>
+						</div>
+						<div class="col-xs-1 col-centered row-centered">
+						</div>
+						<div class="col-xs-5 col-centered">
+							<label>New usage name</label>
+							<input ng-model="newUsageName" ng-change="newUsageNameChange()">
+						</div>
+					</div>
+					<div class="fluid row row-centered">
+						<div class="col-xs-5 col-centered">
+							<label>Available extensions</label>
+						</div>
+						<div class="col-xs-1 col-centered row-centered">
+						</div>
+						<div class="col-xs-5 col-centered">
+							<label>Concerned extensions</label>
+						</div>
+					</div>
+					<div class="fluid row row-centered">
+						<div class="col-xs-5 col-centered">
+							<select size="7" multiple ng-model="available" ng-options="extension as extension for extension in availableExtensions" ng-dblclick="moveItem(available[0], availableExtensions,selectedExtensions)" style="width: 400px; height:200px"></select>
+						</div>
+						<div class="col-xs-1 col-centered row-centered">
+							<input id="moverightall" type="button" value=">>" ng-click="moveAll(availableExtensions,selectedExtensions)" /></br>
+							<input id="moveright" type="button" value=">" ng-click="moveItem(available[0], availableExtensions,selectedExtensions)" /></br>
+							<input id="moveleft" type="button" value="<" ng-click="moveItem(selected[0], selectedExtensions,availableExtensions)" /></br>   
+							<input id="moveleftall" type="button" value="<<" ng-click="moveAll(selectedExtensions,availableExtensions)" />						
+						</div>
+						<div class="col-xs-5 col-centered">
+							<select size="7	" multiple ng-model="selected" ng-options="extension as extension for extension in selectedExtensions"  ng-dblclick="moveItem(selected[0], selectedExtensions,availableExtensions)" style="width: 400px; height:200px"></select>
+						</div>
+					</div>
+					<div class="fluid row">
+						<div class="col-xs-6 col-left">	
+						</div>
+						<div class="col-xs-6 col-right">
+							<a class="btn btn-success" ng-click="save()" ng-disabled="! newUsageName && ! selectedUsage"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a>
+							<a class="btn btn-warning" ng-click="reset()" ng-disabled="newUsageName || ! selectedUsage"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+							<a class="btn btn-danger" ng-click="delete()" ng-disabled="newUsageName || ! selectedUsage"><span class="glyphicon glyphicon-fire"></span> Delete</a>
+						</div>
+					</div>
+				</div>
+					
+				</div>
+			</md-content>
+		</md-tab>
+		<md-tab label="Video">
+			<md-content class="md-padding">
+				<div ng-controller="videoController">
+				<div class="fluid row row-centered">
+					<div class="col-xs-5 col-centered">
+						<label>Currently played file {[{playingFile}]}</label>
+					</div>
+				</div>
+				<div class="fluid row row-centered">
+					<div class="col-xs-5 col-centered">
+						<a class="btn btn-success" ng-click="play()"><span class="glyphicon glyphicon-play"></span> Play</a>
+						<a class="btn btn-warning" ng-click="pause()"><span class="glyphicon glyphicon-pause"></span> Pause</a>
+						<a class="btn btn-danger" ng-click="stop()"><span class="glyphicon glyphicon-stop"></span> Stop</a>
+					</div>
+				</div>
+			</md-content>
+		</md-tab>
+	</md-content>
 </body>
 
 </html>
