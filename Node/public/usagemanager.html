@@ -1,0 +1,49 @@
+<div ng-controller="fileUsagesController">
+	<div class="container fluid">
+		<div class="fluid row row-centered">
+			<div class="col-xs-5 col-centered">
+				<label>Usage name</label>
+				<select ng-model="selectedUsage" ng-options="x for x in usageNames" ng-disabled="newUsageName" ng-change="selectUsage()"></select>
+			</div>
+			<div class="col-xs-1 col-centered row-centered">
+			</div>
+			<div class="col-xs-5 col-centered">
+				<label>New usage name</label>
+				<input ng-model="newUsageName" ng-change="newUsageNameChange()">
+			</div>
+		</div>
+		<div class="fluid row row-centered">
+			<div class="col-xs-5 col-centered">
+				<label>Available extensions</label>
+			</div>
+			<div class="col-xs-1 col-centered row-centered">
+			</div>
+			<div class="col-xs-5 col-centered">
+				<label>Concerned extensions</label>
+			</div>
+		</div>
+		<div class="fluid row row-centered">
+			<div class="col-xs-5 col-centered">
+				<select size="7" multiple ng-model="available" ng-options="extension as extension for extension in availableExtensions" ng-dblclick="moveItem(available[0], availableExtensions,selectedExtensions)" style="width: 400px; height:200px"></select>
+			</div>
+			<div class="col-xs-1 col-centered row-centered">
+				<input id="moverightall" type="button" value=">>" ng-click="moveAll(availableExtensions,selectedExtensions)" /></br>
+				<input id="moveright" type="button" value=">" ng-click="moveItem(available[0], availableExtensions,selectedExtensions)" /></br>
+				<input id="moveleft" type="button" value="<" ng-click="moveItem(selected[0], selectedExtensions,availableExtensions)" /></br>   
+				<input id="moveleftall" type="button" value="<<" ng-click="moveAll(selectedExtensions,availableExtensions)" />						
+			</div>
+			<div class="col-xs-5 col-centered">
+				<select size="7	" multiple ng-model="selected" ng-options="extension as extension for extension in selectedExtensions"  ng-dblclick="moveItem(selected[0], selectedExtensions,availableExtensions)" style="width: 400px; height:200px"></select>
+			</div>
+		</div>
+		<div class="fluid row">
+			<div class="col-xs-6 col-left">	
+			</div>
+			<div class="col-xs-6 col-right">
+				<a class="btn btn-success" ng-click="save()" ng-disabled="! newUsageName && ! selectedUsage"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a>
+				<a class="btn btn-warning" ng-click="reset()" ng-disabled="newUsageName || ! selectedUsage"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+				<a class="btn btn-danger" ng-click="delete()" ng-disabled="newUsageName || ! selectedUsage"><span class="glyphicon glyphicon-fire"></span> Delete</a>
+			</div>
+		</div>
+	</div>
+</div>

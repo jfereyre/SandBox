@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var exec = require('child_process').exec;
 var assert = require('assert');
+var config = require('config');
 var g_fs  = require('fs');
 var g_path = require('path');
 
@@ -35,8 +36,7 @@ exploreDir = function(a_directoryPath) {
 
 /* GET file listing. */
 router.get('/', function(req, res, next) {
-	// res.json({files : exploreDir('C:\\Users\\A624072\\Downloads')});
-	res.json({files : exploreDir('C:\\Users\\jerome\\Downloads')});
+	res.json({files : exploreDir(config.get('file_exploration.root_dir'))});
 });
 
 module.exports = router;

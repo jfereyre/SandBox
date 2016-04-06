@@ -15,7 +15,7 @@ router.post('/', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-	console.log("add file : " + JSON.stringify(req.body.path));
+	console.log("file " + filePlaying + " is playing");
 
 	res.json({files : fileToPlayList, playing : filePlaying});
 });

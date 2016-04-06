@@ -1,0 +1,14 @@
+<div ng-controller="videoController">
+	<div class="fluid row row-centered">
+		<div class="col-xs-5 col-centered">
+			<label>Currently played file {[{playingFile}]}</label>
+		</div>
+	</div>
+	<div class="fluid row row-centered">
+		<div class="col-xs-5 col-centered">
+			<a class="btn btn-success" ng-click="play()"  ng-disabled=""><span class="glyphicon glyphicon-play"></span> Play</a>
+			<a class="btn btn-warning" ng-click="pause()" ng-disabled=""><span class="glyphicon glyphicon-pause"></span> Pause</a>
+			<a class="btn btn-danger" ng-click="stop()" ng-disabled=""><span class="glyphicon glyphicon-stop"></span> Stop</a>
+		</div>
+	</div>
+</div>

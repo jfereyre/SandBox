@@ -24,7 +24,8 @@
     "rxjs": "5.0.0-beta.2",
     "zone.js": "0.6.6",
     "lokijs": "1.3.16",
-    "omxdirector" : "0.1.2"
+    "omxdirector" : "0.1.2",
+	"config" : "1.19.0"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",

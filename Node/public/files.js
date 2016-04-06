@@ -1,7 +1,8 @@
 // public/files.js
 
-g_testJerome.controller('filesPaginationController', function($scope, $http, $log) {
-	
+g_testJerome.controller('filesPaginationController', function($scope, $http, $log, videoPlayer) {
+	$scope.videoPlayer = videoPlayer;
+
 	loadFiles = function() {
 		$http.get("/filemetadata").then(function(response) {
 			$scope.files = response.data
@@ -45,12 +46,12 @@ g_testJerome.controller('filesPaginationController', function($scope, $http, $lo
 			return [];
 		}
 	};
-
+	
 	$scope.totalItems = 64;
 	$scope.currentPage = 1;
 	$scope.nbPages = 0;
 	$scope.maxSize = 3;
 	$scope.nbItems = 0;
-	$scope.itemsPerPage = 25;
+	$scope.itemsPerPage = 10;
 });
 
