@@ -4,7 +4,7 @@ g_testJerome.controller('fileExplorerController', function($scope, $http, $log, 
 	$scope.videoPlayer = videoPlayer;
 
 	loadFiles = function() {
-		$http.get("/filemetadata").then(function(response) {
+		$http.get("/usagemanager").then(function(response) {
 			$scope.files = response.data
 			$scope.nbItems = $scope.files.length;
 
@@ -15,7 +15,7 @@ g_testJerome.controller('fileExplorerController', function($scope, $http, $log, 
 	loadFiles();
 	
 	$scope.refreshFileList = function() {
-		$http.get("/filelist").then(function(response) {
+		$http.get("/fileexplorer").then(function(response) {
 			var l_files = response.data.files;
 			$scope.nbItems = l_files.length;
 
@@ -24,7 +24,7 @@ g_testJerome.controller('fileExplorerController', function($scope, $http, $log, 
 				l_file.normalizedPath = l_files[l_fileIndex].path.split('\\').join('/');
 				l_file.name = l_file.normalizedPath.substring(l_file.normalizedPath.lastIndexOf('/')+1);
 				
-				var res = $http.post('/filemetadata/', l_file);
+				var res = $http.post('/usagemanager/', l_file);
 				res.error(function(data, status, headers, config) {
 					console.log('post metadata failed');
 				});

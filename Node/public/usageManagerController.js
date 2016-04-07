@@ -9,7 +9,7 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log) 
 
 	refreshFileTypes = function() {	
 		$scope.availableExtensions = [];
-		$http.get("/filemetadata/filetypes").then(function(response) {
+		$http.get("/usagemanager/filetypes").then(function(response) {
 			for ( var l_fileTypeIndex = 0 ; l_fileTypeIndex < response.data.length; l_fileTypeIndex++) {
 				var l_isSelected = $scope.selectedExtensions.indexOf(response.data[l_fileTypeIndex].extension);
 				if ( l_isSelected == -1 ) {
@@ -21,7 +21,7 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log) 
 	};
 	
 	$scope.selectUsage = function() {
-		$http.get("/filemetadata/fileusages/" + $scope.selectedUsage).then(function(response) {
+		$http.get("/usagemanager/fileusages/" + $scope.selectedUsage).then(function(response) {
 			if ( response.data.length != 0 ) {
 				$scope.selectedExtensions = response.data[0].extensionList;
 			} else {
@@ -36,7 +36,7 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log) 
 
 	refreshFileUsages = function() {
 		$scope.usageNames = [];
-		$http.get("/filemetadata/fileusages").then(function(response) {
+		$http.get("/usagemanager/fileusages").then(function(response) {
 			for ( var l_fileUsageIndex = 0 ; l_fileUsageIndex < response.data.length; l_fileUsageIndex++) {
 				$scope.usageNames.push(response.data[l_fileUsageIndex].name);
 			}
@@ -69,7 +69,7 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log) 
 			l_fileUsageData.name = $scope.newUsageName;
 		}
 		l_fileUsageData.extensionList = $scope.selectedExtensions;
-		$http.post("/filemetadata/fileusages", l_fileUsageData).then(function(response) {
+		$http.post("/usagemanager/fileusages", l_fileUsageData).then(function(response) {
 			$scope.newUsageName = null;
 			refreshFileUsages();
 		});
@@ -80,7 +80,7 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log) 
     };
 	
 	$scope.delete = function() {
-		$http.delete("/filemetadata/fileusages/" + $scope.selectedUsage).then(function(response) {
+		$http.delete("/usagemanager/fileusages/" + $scope.selectedUsage).then(function(response) {
 			refreshFileUsages();
 		}, function(response) {
 			$scope.selectUsage();

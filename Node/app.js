@@ -25,8 +25,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/filelist', fileExplorationModule);
-app.use('/filemetadata', usageManagerModule);
+app.use('/fileexplorer', fileExplorationModule);
+app.use('/usagemanager', usageManagerModule);
 app.use('/videoplayer', videoPalyerModule);
 
 // catch 404 and forward to error handler
