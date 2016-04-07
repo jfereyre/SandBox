@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var fileExplorationModule = require('./routes/fileExplorationModule');
 var usageManagerModule = require('./routes/usageManagerModule');
-var videoPalyerModule = require('./routes/videoPlayerModule');
+var videoPlayerModule = require('./routes/videoPlayerModule');
+var fileSetManagerModule = require('./routes/fileSetManager');
 
 var app = express();
 
@@ -27,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/fileexplorer', fileExplorationModule);
 app.use('/usagemanager', usageManagerModule);
-app.use('/videoplayer', videoPalyerModule);
+app.use('/videoplayer', videoPlayerModule);
+app.use('/filesetmanager', fileSetManagerModule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

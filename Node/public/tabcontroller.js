@@ -18,6 +18,10 @@ g_testJerome.controller('tabController', function($scope) {
 		'id' : 'Videoplayer', 
         'label' : 'Videoplayer',
         'templateUrl' : 'videoplayer.html'
+    }, {
+		'id' : 'FileSetManager', 
+        'label' : 'File set manager',
+        'templateUrl' : 'filesetmanager.html'
     }];
 	
 	$scope.activeTab = $scope.tabs[0];    

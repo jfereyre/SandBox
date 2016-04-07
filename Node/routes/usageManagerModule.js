@@ -100,6 +100,14 @@ router.get('/', function(req, res) {
 	res.json(l_result);
 });
 
+router.get('/forusage/:fileUsageName', function(req, res) {
+	var l_usage = g_fileUsagesCollection.find({name : req.params.fileUsageName});
+	var l_result = [];
+	if ( l_usage.length == 1 ) {
+		var l_result = g_filesCollection.find({extension : { $in : l_usage[0].extensionList}});
+	}
+	res.json(l_result);
+});
 
 module.exports = router;
 
