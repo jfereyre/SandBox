@@ -1,4 +1,4 @@
-// public/files.js
+// public/fileExplorerController.js
 
 g_testJerome.controller('fileExplorerController', function($scope, $http, $log, videoPlayer) {
 	$scope.videoPlayer = videoPlayer;

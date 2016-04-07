@@ -1,4 +1,4 @@
-// public/videousage.js
+// public/videoPlayerService.js
 
 g_testJerome.factory('videoPlayer', function($http, $log) {
 	var videoPlayerService = {};

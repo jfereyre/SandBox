@@ -1,4 +1,4 @@
-// public/videousage.js
+// public/videoPlayerController.js
 
 g_testJerome.controller('videoPlayerController', function($scope, $http, $log, videoPlayer) {
 	$scope.videoPlayer = videoPlayer;

@@ -1,4 +1,4 @@
-// public/fileusages.js
+// public/usageManagerController.js
 
 g_testJerome.controller('usageManagerController', function($scope, $http, $log) {	
 	$scope.usageNames = [];

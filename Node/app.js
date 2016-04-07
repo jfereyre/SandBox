@@ -6,10 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var filelist = require('./routes/filelist');
-var filemetadata = require('./routes/filemetadata');
-var videoplayer = require('./routes/videoplayer');
+var fileExplorationModule = require('./routes/fileExplorationModule');
+var usageManagerModule = require('./routes/usageManagerModule');
+var videoPalyerModule = require('./routes/videoPlayerModule');
 
 var app = express();
 
@@ -26,10 +25,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/filelist', filelist);
-app.use('/filemetadata', filemetadata);
-app.use('/videoplayer', videoplayer);
+app.use('/filelist', fileExplorationModule);
+app.use('/filemetadata', usageManagerModule);
+app.use('/videoplayer', videoPalyerModule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
