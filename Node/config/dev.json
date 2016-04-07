@@ -3,6 +3,9 @@
 	"location" : "C:\\Users\\A624072\\AppData\\Local\\Temp\\DB\\filemetadata.db"
   },
   "file_exploration" : {
-	"rootdir" : "C:\\Users\\jerome\\Downloads"
+	"root_dir" : "C:\\Users\\A624072\\Downloads"
+  },
+  "video_player" : {
+	"audio_output" : "hdmi"
   }
 }

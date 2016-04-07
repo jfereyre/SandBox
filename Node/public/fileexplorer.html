@@ -1,4 +1,4 @@
-<div ng-controller="filesPaginationController">
+<div ng-controller="fileExplorerController">
 	<style>
 		.CSSTableGenerator {
 			margin:0px;padding:0px;
@@ -105,7 +105,7 @@
 			<td>{[{ file.name }]}</td>
 			<td>
 				<div ng-show="file.usageName=='picture'">coucou picture</div>
-				<div ng-show="file.usageName=='video'"><a class="btn btn-xs btn-success" ng-click="videoPlayer.play(file.path)"><span class="glyphicon glyphicon-play"></span> Play</a></div>
+				<div ng-show="file.usageName=='video'"><a ng-click="videoPlayer.addToPlayList(file.path)" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-share-alt"></span> Load</a></div>
 				<div ng-show="file.usageName=='texte'">coucou txt</div>
 			</td>
 		</tr>

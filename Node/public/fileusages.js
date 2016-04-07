@@ -1,6 +1,6 @@
 // public/fileusages.js
 
-g_testJerome.controller('fileUsagesController', function($scope, $http, $log) {	
+g_testJerome.controller('usageManagerController', function($scope, $http, $log) {	
 	$scope.usageNames = [];
 	$scope.selectedUsage = $scope.usageNames[0];
 	$scope.newUsageName = null;

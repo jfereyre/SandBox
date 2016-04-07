@@ -1,30 +1,31 @@
 // public/tabcontroller.js
 
-g_testJerome.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-	$routeProvider.when('/', {
-        templateUrl: 'tabset.html',
-        controller: 'tabController'
-    })
-    .otherwise({
-    	redirectTo: '/'
-    });
-
-	  // Enable html5Mode for pushstate ('#'-less URLs)
-    // $locationProvider.html5Mode(true);
+g_testJerome.config(['$locationProvider', function($locationProvider) {
+	//Enable html5Mode for pushstate ('#'-less URLs)
+    $locationProvider.html5Mode(false);
 }]);
 
-g_testJerome.controller('tabController', ['$scope', '$rootScope', function($scope, $rootScope) {
+g_testJerome.controller('tabController', function($scope) {
     $scope.tabs = [{
-        "heading" : 'Files',
-		"active" : true,
-        "template" : 'fileexplorer.html'
+		'id' : 'Files', 
+        'label' : 'Files',
+        'templateUrl' : 'fileexplorer.html'
     }, {
-        "heading" : 'Usages',
-		"active" : false,
-        "template" : 'usagemanager.html'
+		'id' : 'Usages', 
+        'label' : 'Usages',
+        'templateUrl' : 'usagemanager.html'
     }, {
-        "heading" : 'Videoplayer',
-		"active" : false,
-        "template" : 'videoplayer.html'
+		'id' : 'Videoplayer', 
+        'label' : 'Videoplayer',
+        'templateUrl' : 'videoplayer.html'
     }];
-}]);
+	
+	$scope.activeTab = $scope.tabs[0];    
+	$scope.changeActiveTab = function (tabId) {
+		$scope.activeTab = tabId;
+	};
+
+	$scope.isActiveTab = function (tabId) {
+		return tabId === $scope.activeTab;
+	}
+});

@@ -3,20 +3,25 @@
 g_testJerome.factory('videoPlayer', function($http, $log) {
 	var videoPlayerService = {};
 	
-	videoPlayerService.play = function(a_filePath) {
+	videoPlayerService.addToPlayList = function(a_filePath) {
 		var l_fileData = {path : a_filePath};
-		var l_addFileResult = $http.post('/videoplayer/', l_fileData);
-		l_addFileResult.success(function(data, status, headers, config) {
-			var l_playResult = $http.post('/videoplayer/play');
-		});
+		$http.post('/videoplayer/', l_fileData);
+	}
+	
+	videoPlayerService.play = function(a_filePath) {
+		return $http.post('/videoplayer/play');
 	}
 	
 	videoPlayerService.pause = function() {
-		$http.post('/videoplayer/pause/');
+		return $http.post('/videoplayer/pause/');
 	}
 	
 	videoPlayerService.stop = function() {
-		$http.post('/videoplayer/stop/');
+		return $http.post('/videoplayer/stop/');
+	}
+		
+	videoPlayerService.drop = function() {
+		return $http.post('/videoplayer/drop/');
 	}
 	
 	videoPlayerService.getPlaying = function() {

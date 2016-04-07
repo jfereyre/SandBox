@@ -1,6 +1,6 @@
 // public/files.js
 
-g_testJerome.controller('filesPaginationController', function($scope, $http, $log, videoPlayer) {
+g_testJerome.controller('fileExplorerController', function($scope, $http, $log, videoPlayer) {
 	$scope.videoPlayer = videoPlayer;
 
 	loadFiles = function() {
