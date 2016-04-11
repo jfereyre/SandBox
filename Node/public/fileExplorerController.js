@@ -39,12 +39,20 @@ g_testJerome.controller('fileExplorerController', function($scope, $http, $log, 
 	$scope.pageChanged = function() {
 		
 	};
-
+	
+	$scope.refresh = function() {
+		loadFiles();
+	};
+	
 	$scope.filesToDisplay = function() {
 		if ( $scope.files ) {
 			return $scope.files.slice(($scope.currentPage-1)*$scope.itemsPerPage, ($scope.currentPage-1)*$scope.itemsPerPage + $scope.itemsPerPage);	} else {
 			return [];
 		}
+	};
+	
+	$scope.setNbItemsPerPage = function(a_itemsPerPage) {
+		$scope.itemsPerPage = a_itemsPerPage;
 	};
 	
 	$scope.totalItems = 64;

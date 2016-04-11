@@ -1,18 +1,36 @@
+
+
 <div ng-controller="fileSetManagerController">
-	<div class="container fluid">
-		<div class="fluid row row-centered">
-			<div class="col-xs-5 col-centered">
-				<select size="7" multiple ng-model="available" ng-options="file as file.name for file in availableFiles" ng-dblclick="moveItem(available[0], availableFiles, selectedFiles)" style="width: 400px; height:200px"></select>
-			</div>
-			<div class="col-xs-1 col-centered row-centered">
-				<input id="moverightall" type="button" value=">>" ng-click="moveAll(availableFiles,selectedFiles)" /></br>
-				<input id="moveright" type="button" value=">" ng-click="moveItem(available[0], availableFiles, selectedFiles)" /></br>
-				<input id="moveleft" type="button" value="<" ng-click="moveItem(selected[0], selectedFiles, availableFiles)" /></br>   
-				<input id="moveleftall" type="button" value="<<" ng-click="moveAll(selectedFiles, availableFiles)" />						
-			</div>
-			<div class="col-xs-5 col-centered">
-				<select size="7	" multiple ng-model="selected" ng-options="file as file.name for file in selectedFiles"  ng-dblclick="moveItem(selected[0], selectedFiles, availableFiles)" style="width: 400px; height:200px"></select>
-			</div>
+	<div class="fluid row row-centered container">
+		<div class="col-md-3">
+			<span class="pull-right"><label>New File set name</label></span>
+		</div>
+		<div class="col-md-9 col-centered">
+			<input ng-model="newFileSetName" style="width:60%"></input>
+		</div>
+	</div>
+	
+	<div class="fluid row row-centered container">
+		<div class="col-md-7 col-centered">
+			<label>Available files</label>
+		</div>
+		<div class="col-md-5 col-centered">
+			<label>Fileset content</label>
+		</div>
+	</div>
+	
+	<div class="fluid row row-centered container">
+		<div class="col-md-6 col-centered">
+			<select size="7" multiple ng-model="available" ng-options="file as file.name for file in availableFiles" ng-dblclick="moveItem(available[0], availableFiles, selectedFiles)" style="width:100%; height:100%"></select>
+		</div>
+		<div class="col-md-1 col-centered row-centered">
+			<input id="moverightall" type="button" value=">>" ng-click="moveAll(availableFiles,selectedFiles)" /></br>
+			<input id="moveright" type="button" value=">" ng-click="moveItem(available[0], availableFiles, selectedFiles)" /></br>
+			<input id="moveleft" type="button" value="<" ng-click="moveItem(selected[0], selectedFiles, availableFiles)" /></br>   
+			<input id="moveleftall" type="button" value="<<" ng-click="moveAll(selectedFiles, availableFiles)" />						
+		</div>
+		<div class="col-md-5 col-centered">
+			<select size="7	" multiple ng-model="selected" ng-options="file as file.name for file in selectedFiles"  ng-dblclick="moveItem(selected[0], selectedFiles, availableFiles)" style="width:100%; height:100%"></select>
 		</div>
 	</div>
 </div>

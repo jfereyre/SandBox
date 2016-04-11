@@ -75,6 +75,10 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log) 
 		});
     };    
 	
+	$scope.refresh = function() {
+		refreshFileUsages();
+	};
+
 	$scope.reset = function() {
 		$scope.selectUsage();
     };

@@ -4,13 +4,60 @@ g_testJerome.controller('fileSetManagerController', function($scope, $http, $log
 	$scope.availableFiles = [];
 	$scope.selectedFiles = [];
 	
+	$scope.tagList =  [{ name : 'Serie'}]
+	
+	$scope.fileSetList = [	{ 	name : 'un',
+								childFileSet : [ 
+									{	name : 'deux', 
+										childFileSet : [
+											{	name : 'trois', 
+												childFileSet : [],
+												fileList : [],
+												tagList :   []
+											},
+											{	name : 'quatre', 
+												childFileSet : [],
+												fileList : []
+											},
+											{	name : 'cinq', 
+												childFileSet : [],
+												fileList : []
+											},
+										]
+									}
+								],
+								fileList : []
+							}
+						];
+	
 	loadFileSets = function() {
 		$http.get("/usagemanager/forusage/video").then(function(response) {
-			console.log(response.data);
 			$scope.availableFiles = response.data;
 		});
 	};
-		
+	
+	$scope.toggle = function (scope) {
+        scope.toggle();
+	};
+	
+	$scope.remove = function (scope) {
+		scope.remove();
+	};
+	
+	$scope.newSubItem = function (scope, newFileSetTitle) {
+		$log.log(newFileSetTitle);
+        var fileSetData = scope.$modelValue;
+        fileSetData.childFileSet.push({
+          name: newFileSetTitle,
+          childFileSet: [],
+		  fileList : []
+        });
+	};
+	
+	$scope.refresh = function() {
+		loadFileSets();
+	};
+	
 	$scope.moveItem = function(item, from, to) {
         var idx=from.indexOf(item);
         if (idx != -1) {

@@ -30,6 +30,8 @@ app.use('/fileexplorer', fileExplorationModule);
 app.use('/usagemanager', usageManagerModule);
 app.use('/videoplayer', videoPlayerModule);
 app.use('/filesetmanager', fileSetManagerModule);
+app.use('/node_modules', express.static(__dirname + '/node_modules/'));
+app.use('/uib/template', express.static(__dirname + '/node_modules/angular-ui-bootstrap/template'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

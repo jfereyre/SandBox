@@ -4,14 +4,19 @@
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="testJerome">
 <head>
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>  
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-sanitize.min.js"></script>
-  <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.2.5.js"></script>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/node_modules/angular/angular.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-aria/angular-aria.min.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-route/angular-route.min.js"></script>  
+  <script type="text/javascript" src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-touch/angular-touch.min.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+  <script type="text/javascript" src="/node_modules/angular-ui-tree/dist/angular-ui-tree.js"></script>
   <script src="core.js"></script>
   <script src="usageManagerController.js"></script>
   <script src="videoPlayerService.js"></script>
@@ -19,6 +24,8 @@
   <script src="fileExplorerController.js"></script>
   <script src="fileSetManagerController.js"></script>
   <script src="tabcontroller.js"></script>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/node_modules/angular-ui-tree/dist/angular-ui-tree.css">
 </head>
 
 <body ng-controller="tabController">
@@ -32,12 +39,21 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Brand</a>
+				<a class="navbar-brand" > <img style="margin-top: -12px;display:block;width:40px;height:45px;" src="http://graph.facebook.com/1560427747/picture?type=normal"></img></a>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav nav-default" >
-					<li ng-class="{'active': isActiveTab(tab.id)}" ng-repeat="tab in tabs">
-						<a ng-click="changeActiveTab(tab.id)" data-toggle="tab">{[{tab.label}]}</a>
+					<li ng-class="{'active': isActiveTab('Files')}">
+						<a ng-click="changeActiveTab('Files')" data-toggle="tab">Files</a>
+					</li>
+					<li ng-class="{'active': isActiveTab('VideoPlayer')}">
+						<a ng-click="changeActiveTab('VideoPlayer')" data-toggle="tab">Video player</a>
+					</li>
+					<li ng-class="{'active': isActiveTab('FileSets')}">
+						<a ng-click="changeActiveTab('FileSets')" data-toggle="tab">File sets</a>
+					</li>
+					<li ng-class="{'active': isActiveTab('Usages')}">
+						<a ng-click="changeActiveTab('Usages')" data-toggle="tab">Usages</a>
 					</li>
 				</ul>
 			</div>
@@ -45,7 +61,10 @@
 	</nav>
     
     <div class="tab-content">
-		<div class="tab-pane fade" ng-class="{'in active': isActiveTab(tab.id)}" ng-repeat="tab in tabs" ng-include="tab.templateUrl"></div>
+		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('Files')}" src="'fileexplorer.html'"  ng-controller="fileExplorerController"></div>
+		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('Usages')}" src="'usagemanager.html'" ng-controller="usageManagerController"></div>
+		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('VideoPlayer')}" src="'videoplayer.html'" ng-controller="videoPlayerController"></div>
+		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('FileSets')}" src="'filesetmanager.html'" ng-controller="fileSetManagerController"></div>
 	</div>
 	
 </body>

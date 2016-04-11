@@ -1,120 +1,46 @@
 <div ng-controller="fileExplorerController">
-	<style>
-		.CSSTableGenerator {
-			margin:0px;padding:0px;
-			width:100%;
-			box-shadow: 10px 10px 5px #888888;
-			border:1px solid #000000;
-			
-			-moz-border-radius-bottomleft:0px;
-			-webkit-border-bottom-left-radius:0px;
-			border-bottom-left-radius:0px;
-			
-			-moz-border-radius-bottomright:0px;
-			-webkit-border-bottom-right-radius:0px;
-			border-bottom-right-radius:0px;
-			
-			-moz-border-radius-topright:0px;
-			-webkit-border-top-right-radius:0px;
-			border-top-right-radius:0px;
-			
-			-moz-border-radius-topleft:0px;
-			-webkit-border-top-left-radius:0px;
-			border-top-left-radius:0px;
-		}.CSSTableGenerator table{
-			border-collapse: collapse;
-				border-spacing: 0;
-			width:100%;
-			height:100%;
-			margin:0px;padding:0px;
-		}.CSSTableGenerator tr:last-child td:last-child {
-			-moz-border-radius-bottomright:0px;
-			-webkit-border-bottom-right-radius:0px;
-			border-bottom-right-radius:0px;
-		}
-		.CSSTableGenerator table tr:first-child td:first-child {
-			-moz-border-radius-topleft:0px;
-			-webkit-border-top-left-radius:0px;
-			border-top-left-radius:0px;
-		}
-		.CSSTableGenerator table tr:first-child td:last-child {
-			-moz-border-radius-topright:0px;
-			-webkit-border-top-right-radius:0px;
-			border-top-right-radius:0px;
-		}.CSSTableGenerator tr:last-child td:first-child{
-			-moz-border-radius-bottomleft:0px;
-			-webkit-border-bottom-left-radius:0px;
-			border-bottom-left-radius:0px;
-		}.CSSTableGenerator tr:hover td{
-			
-		}
-		.CSSTableGenerator tr:nth-child(odd){ background-color:#e5e5e5; }
-		.CSSTableGenerator tr:nth-child(even)    { background-color:#ffffff; }.CSSTableGenerator td{
-			vertical-align:middle;
-			
-			
-			border:1px solid #000000;
-			border-width:0px 1px 1px 0px;
-			text-align:left;
-			padding:7px;
-			font-size:10px;
-			font-family:Arial;
-			font-weight:normal;
-			color:#000000;
-		}.CSSTableGenerator tr:last-child td{
-			border-width:0px 1px 0px 0px;
-		}.CSSTableGenerator tr td:last-child{
-			border-width:0px 0px 1px 0px;
-		}.CSSTableGenerator tr:last-child td:last-child{
-			border-width:0px 0px 0px 0px;
-		}
-		.CSSTableGenerator tr:first-child td{
-				background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #b2b2b2) );
-			background:-moz-linear-gradient( center top, #cccccc 5%, #b2b2b2 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#cccccc,b2b2b2);
+	<link rel="stylesheet" href="table_style.css">
 
-			background-color:#cccccc;
-			border:0px solid #000000;
-			text-align:center;
-			border-width:0px 0px 1px 1px;
-			font-size:14px;
-			font-family:Arial;
-			font-weight:bold;
-			color:#000000;
-		}
-		.CSSTableGenerator tr:first-child:hover td{
-			background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #b2b2b2) );
-			background:-moz-linear-gradient( center top, #cccccc 5%, #b2b2b2 100% );
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#cccccc,b2b2b2);
-
-			background-color:#cccccc;
-		}
-		.CSSTableGenerator tr:first-child td:first-child{
-			border-width:0px 0px 1px 0px;
-		}
-		.CSSTableGenerator tr:first-child td:last-child{
-			border-width:0px 0px 1px 1px;
-		}				
-	</style>
+	
 	<div class="CSSTableGenerator">
-	<table>
-		<tr>
-			<td colspan="2">File </td>
-		</tr>
-		<tr ng-repeat = "file in filesToDisplay()">
-			<td>{[{ file.name }]}</td>
-			<td>
-				<div ng-show="file.usageName=='picture'">coucou picture</div>
-				<div ng-show="file.usageName=='video'"><a ng-click="videoPlayer.addToPlayList(file.path)" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-share-alt"></span> Load</a></div>
-				<div ng-show="file.usageName=='texte'">coucou txt</div>
-			</td>
-		</tr>
-		<tr>
-			<th colspan="2" style="text-align:center;"><uib-pagination total-items="nbItems" num-pages="nbPages" ng-model="currentPage" max-size="maxSize" items-per-page="itemsPerPage" ng-change="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination></th>
-		</tr>
-	</table>
+		<table>
+			<tr>
+				<td colspan="2">File </td>
+			</tr>
+			<tr ng-repeat = "file in filesToDisplay()">
+				<td>{[{ file.name }]}</td>
+				<td>
+					<div ng-show="file.usageName=='picture'">coucou picture</div>
+					<div ng-show="file.usageName=='video'"><a ng-click="videoPlayer.addToPlayList(file.path)" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-share-alt"></span> Load</a></div>
+					<div ng-show="file.usageName=='texte'">coucou txt</div>
+				</td>
+			</tr>
+		</table>
 	</div>
-	<div class="fluid row row-centered">
-		<a class="btn btn-success" ng-click="refreshFileList()"><span class="glyphicon glyphicon-refresh"></span> Refresh file list</a>
+	
+	<div container="fluid">
+		<table width="100%">
+			<tr>	
+				<td style="text-align:center">
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Number of files per page
+						<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li><a ng-click="setNbItemsPerPage(10)">10</a></li>
+							<li><a ng-click="setNbItemsPerPage(25)">25</a></li>
+							<li><a ng-click="setNbItemsPerPage(50)">50</a></li>
+							<li><a ng-click="setNbItemsPerPage(nbItems)">all</a></li>
+						</ul>
+					</div>
+				</td>
+				<td style="text-align:center">
+					<uib-pagination total-items="nbItems" num-pages="nbPages" ng-model="currentPage" max-size="maxSize" items-per-page="itemsPerPage" ng-change="pageChanged()" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+				</td>
+				<td style="text-align:center">
+					<a class="btn btn-success" ng-click="refreshFileList()"><span class="glyphicon glyphicon-refresh"></span> Refresh file list</a>
+				</td>
+			</tr>
+		<table>
 	</div>
+	
 </div>

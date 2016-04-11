@@ -36,7 +36,15 @@ exploreDir = function(a_directoryPath) {
 
 /* GET file listing. */
 router.get('/', function(req, res, next) {
-	res.json({files : exploreDir(config.get('file_exploration.root_dir'))});
+	var l_directoriesToExplore = config.get('file_exploration.root_dir');
+	var l_files = [];
+	
+	for ( var l_directoryIndex = 0 ; l_directoryIndex < l_directoriesToExplore.length; l_directoryIndex++ ) {
+		console.log("Exploring: " + l_directoriesToExplore[l_directoryIndex]);
+		l_files = l_files.concat(exploreDir(l_directoriesToExplore[l_directoryIndex]));
+	}
+	
+	res.json({files : l_files});
 });
 
 module.exports = router;

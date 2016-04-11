@@ -3,7 +3,7 @@
 	"location" : "C:\\Users\\A624072\\AppData\\Local\\Temp\\DB\\filemetadata.db"
   },
   "file_exploration" : {
-	"root_dir" : "C:\\Users\\A624072\\Downloads"
+	"root_dir" : [ "C:\\Users\\A624072\\Downloads", "C:\\Users\\A624072\\Documents\\MyProjects\\Node\\routes"]
   },
   "video_player" : {
 	"audio_output" : "hdmi"
