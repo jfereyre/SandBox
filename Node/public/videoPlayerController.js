@@ -44,7 +44,6 @@ g_testJerome.controller('videoPlayerController', function($scope, $http, $log, v
 	}
 	
 	$scope.refresh = function() {
-		console.log("refresh function called");
 		$scope.playing();
 	}
 	

@@ -3,13 +3,13 @@
 		<div class="fluid row row-centered">
 			<div class="col-xs-5 col-centered">
 				<label>{[{context.listNamesLabel}]}</label>
-				<select ng-model="context.selectedListName" ng-options="x for x in context.listNames" ng-disabled="context.newListName" ng-change="listItemEditorService.selectLists('usages')"></select>
+				<select ng-model="context.selectedListName" ng-options="x for x in context.listNames" ng-disabled="context.newListName" ng-change="listItemEditorService.selectLists(context.contextName)"></select>
 			</div>
 			<div class="col-xs-1 col-centered row-centered">
 			</div>
 			<div class="col-xs-5 col-centered">
 				<label>{[{context.newListNameLabel}]}</label>
-				<input ng-model="context.newListName" ng-change="listItemEditorService.newListNameChange('usages')">
+				<input ng-model="context.newListName" ng-change="listItemEditorService.newListNameChange(context.contextName)">
 			</div>
 		</div>
 		<div class="fluid row row-centered">
@@ -24,25 +24,25 @@
 		</div>
 		<div class="fluid row row-centered">
 			<div class="col-xs-5 col-centered">
-				<select size="7" multiple ng-model="context.available" ng-options="items as items for items in context.availableItems" ng-dblclick="listItemEditorService.moveItem('usages', context.available[0], context.availableItems, context.selectedItems)" style="width: 400px; height:200px"></select>
+				<select size="7" multiple ng-model="context.available" ng-options="items as items for items in context.availableItems" ng-dblclick="listItemEditorService.moveItem(context.contextName, context.available[0], context.availableItems, context.selectedItems)" style="width: 400px; height:200px"></select>
 			</div>
 			<div class="col-xs-1 col-centered row-centered">
-				<input id="moverightall" type="button" value=">>" ng-click="listItemEditorService.moveAll('usages', context.availableItems, context.selectedItems)" /></br>
-				<input id="moveright" type="button" value=">" ng-click="listItemEditorService.moveItem('usages', context.available[0], context.availableItems,context.selectedItems)" /></br>
-				<input id="moveleft" type="button" value="<" ng-click="listItemEditorService.moveItem('usages', context.selected[0], context.selectedItems, context.availableItems)" /></br>   
-				<input id="moveleftall" type="button" value="<<" ng-click="listItemEditorService.moveAll('usages', context.selectedItems, context.availableItems)" />						
+				<input id="moverightall" type="button" value=">>" ng-click="listItemEditorService.moveAll(context.contextName, context.availableItems, context.selectedItems)" /></br>
+				<input id="moveright" type="button" value=">" ng-click="listItemEditorService.moveItem(context.contextName, context.available[0], context.availableItems,context.selectedItems)" /></br>
+				<input id="moveleft" type="button" value="<" ng-click="listItemEditorService.moveItem(context.contextName, context.selected[0], context.selectedItems, context.availableItems)" /></br>   
+				<input id="moveleftall" type="button" value="<<" ng-click="listItemEditorService.moveAll(context.contextName, context.selectedItems, context.availableItems)" />						
 			</div>
 			<div class="col-xs-5 col-centered">
-				<select size="7	" multiple ng-model="context.selected" ng-options="items as items for items in context.selectedItems"  ng-dblclick="listItemEditorService.moveItem('usages', context.selected[0], context.selectedItems, context.availableItems)" style="width: 400px; height:200px"></select>
+				<select size="7	" multiple ng-model="context.selected" ng-options="items as items for items in context.selectedItems"  ng-dblclick="listItemEditorService.moveItem(context.contextName, context.selected[0], context.selectedItems, context.availableItems)" style="width: 400px; height:200px"></select>
 			</div>
 		</div>
 		<div class="fluid row">
 			<div class="col-xs-6 col-left">	
 			</div>
 			<div class="col-xs-6 col-right">
-				<a class="btn btn-success" ng-click="listItemEditorService.save('usages')" ng-disabled="! context.newListName && ! context.selectedListName"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a>
-				<a class="btn btn-warning" ng-click="listItemEditorService.reset('usages')" ng-disabled="context.newListName || ! context.selectedListName"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
-				<a class="btn btn-danger" ng-click="listItemEditorService.delete('usages')" ng-disabled="context.newListName || ! context.selectedListName"><span class="glyphicon glyphicon-fire"></span> Delete</a>
+				<a class="btn btn-success" ng-click="listItemEditorService.save(context.contextName)" ng-disabled="! context.newListName && ! context.selectedListName"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a>
+				<a class="btn btn-warning" ng-click="listItemEditorService.reset(context.contextName)" ng-disabled="context.newListName || ! context.selectedListName"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+				<a class="btn btn-danger" ng-click="listItemEditorService.delete(context.contextName)" ng-disabled="context.newListName || ! context.selectedListName"><span class="glyphicon glyphicon-fire"></span> Delete</a>
 			</div>
 		</div>
 	</div>

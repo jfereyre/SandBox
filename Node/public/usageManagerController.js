@@ -9,6 +9,8 @@ g_testJerome.controller('usageManagerController', function($scope, $http, $log, 
 																"Usage name", 
 																"Available extensions",
 																"Concerned extensions",
+																"name",
+																"name",
 																"extension",
 																"extensionList");
 });

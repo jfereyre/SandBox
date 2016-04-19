@@ -10,6 +10,8 @@ g_testJerome.controller('fileSetManagerController', function($scope, $http, $log
 																"Available files",
 																"Selected files",
 																"name",
-																"");
+																"name",
+																"name",
+																"fileList");
 });
 

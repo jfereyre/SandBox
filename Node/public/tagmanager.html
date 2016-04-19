@@ -1,0 +1,11 @@
+<div container="container fluid" ng-controller="tagManagerController">
+	<div class="container fluid row row-centered">
+			<label> New tag name </label>
+			<input ng-model="newTagName">	
+			<a class="btn btn-success" ng-click="addTag(newTagName)" ng-disabled="! newTagName"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a>
+			<a class="btn btn-warning" ng-click="newTagName=null" ng-disabled="! newTagName"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+	</div>
+	<div class="container fluid">
+		<a class="btn btn-xs btn-danger" ng-repeat = "tag in tagList" ng-click="delTag(tag.name)"><span class="glyphicon glyphicon-remove-sign"></span>{[{tag.name}]}</a>
+	</div>
+</div>
