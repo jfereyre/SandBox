@@ -19,14 +19,11 @@
   <script type="text/javascript" src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
   <script type="text/javascript" src="/node_modules/angular-ui-tree/dist/angular-ui-tree.js"></script>
   <script src="core.js"></script>
-  <script src="usageManagerController.js"></script>
   <script src="videoPlayerService.js"></script>
   <script src="listOfItemsEditorService.js"></script>
   <script src="videoPlayerController.js"></script>
   <script src="fileExplorerController.js"></script>
   <script src="videoFileEditorController.js"></script>
-  <!--<script src="fileSetManagerController.js"></script>
-  <script src="tagManagerController.js"></script>-->
   <script src="tabcontroller.js"></script>
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="/node_modules/angular-ui-tree/dist/angular-ui-tree.css">
@@ -53,18 +50,9 @@
 					<li ng-class="{'active': isActiveTab('VideoPlayer')}">
 						<a ng-click="changeActiveTab('VideoPlayer')" data-toggle="tab">Video player</a>
 					</li>
-					<li ng-class="{'active': isActiveTab('Usages')}">
-						<a ng-click="changeActiveTab('Usages')" data-toggle="tab">Usages</a>
-					</li>
 					<li ng-class="{'active': isActiveTab('Video File Editor')}">
 						<a ng-click="changeActiveTab('Video File Editor')" data-toggle="tab">Video file editor</a>
 					</li>
-					<!--<li ng-class="{'active': isActiveTab('Tags')}">
-						<a ng-click="changeActiveTab('Tags')" data-toggle="tab">Tags</a>
-					</li>
-					<li ng-class="{'active': isActiveTab('FileSets')}">
-						<a ng-click="changeActiveTab('FileSets')" data-toggle="tab">File sets</a>
-					</li>-->
 				</ul>
 			</div>
 		</div>
@@ -72,11 +60,8 @@
     
     <div class="tab-content">
 		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('Files')}" src="'fileexplorer.html'"  ng-controller="fileExplorerController"></div>
-		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('Usages')}" src="'usagemanager.html'" ng-controller="usageManagerController"></div>
 		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('VideoPlayer')}" src="'videoplayer.html'" ng-controller="videoPlayerController"></div>
 		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('Video File Editor')}" src="'videofileeditor.html'" ng-controller="videoFileEditorController"></div>
-		<!--<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('FileSets')}" src="'filesetmanager.html'" ng-controller="fileSetManagerController"></div>
-		<div ng-include class="tab-pane" ng-class="{'in active': isActiveTab('Tags')}" src="'tagmanager.html'" ng-controller="tagManagerController"></div>-->
 	</div>
 	
 </body>
