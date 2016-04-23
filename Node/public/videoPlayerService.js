@@ -3,12 +3,12 @@
 g_testJerome.factory('videoPlayer', function($http, $log) {
 	var videoPlayerService = {};
 	
-	videoPlayerService.addToPlayList = function(a_filePath) {
-		var l_fileData = {path : a_filePath};
+	videoPlayerService.addToPlayList = function(a_file_path, a_moviedata) {
+		var l_fileData = {path : a_file_path, moviedata : a_moviedata };
 		$http.post('/videoplayer/', l_fileData);
 	}
 	
-	videoPlayerService.play = function(a_filePath) {
+	videoPlayerService.play = function() {
 		return $http.post('/videoplayer/play');
 	}
 	

@@ -1,0 +1,22 @@
+<div container="container fluid" ng-controller="videoFileEditorController">
+	<link rel="stylesheet" href="movie_style.css">
+	<select
+	  ng-model="searched">
+		<option ng-repeat="file in files" ng-value="file.index">{[{file.name}]}</option>
+	</select>
+	<input ng-model="searched">
+	<a class="btn btn-sm btn-primary" ng-click="search()" ><span class="glyphicon glyphicon-refresh"></span> Search</a>
+	<div class="row">
+		<div class="col-md-10">
+			<!--Body content-->
+			<ul class="movies">
+			  <li ng-repeat="movie in searchResults" class="thumbnail">
+				<a class="moviePosterThumb"><img ng-src="{[{movie.Poster}]}" alt="{[{movie.Title}]}"></a>
+				<label>{[{movie.Title}]}</label>
+				<p>{[{movie.Year}]}</p>
+				<a class="btn btn-sm btn-primary" ng-click="storeMovieData(movie)" ><span class="glyphicon glyphicon-refresh"></span> Select</a>
+			  </li>
+			</ul>
+		</div>
+	</div>
+</div>

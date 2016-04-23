@@ -11,7 +11,7 @@ var usageManagerModule = require('./routes/usageManagerModule');
 var videoPlayerModule = require('./routes/videoPlayerModule');
 var fileSetManagerModule = require('./routes/fileSetManager');
 var tagManagerModule = require('./routes/tagManagerModule');
-
+var imdbProxyModule = require('./routes/imdbProxyModule');
 var app = express();
 
 // view engine setup
@@ -32,6 +32,7 @@ app.use('/usagemanager', usageManagerModule);
 app.use('/videoplayer', videoPlayerModule);
 app.use('/filesetmanager', fileSetManagerModule);
 app.use('/tagmanager', tagManagerModule);
+app.use('/imdbproxy', imdbProxyModule);
 app.use('/node_modules', express.static(__dirname + '/node_modules/'));
 app.use('/uib/template', express.static(__dirname + '/node_modules/angular-ui-bootstrap/template'));
 

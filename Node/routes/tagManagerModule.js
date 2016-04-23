@@ -20,9 +20,14 @@ function loadHandler() {
 }
 
 router.post('/', function(req, res) {
-	var l_tag = g_tagsCollection.find({ "name" : req.body.name });
-	if ( l_tag == 0 ) {
-		g_tagsCollection.insert({ "name" : req.body.name });
+	if ( req.body.name.trim() != "" ) { 
+		var l_tag = g_tagsCollection.find({ "name" : req.body.name });
+		if ( l_tag == 0 ) {
+			g_tagsCollection.insert({ "name" : req.body.name });
+		} else {
+			l_tag.params = req.body.params;
+			g_tagsCollection.update(l_tag);
+		}
 	}
 	res.json({});
 });

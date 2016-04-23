@@ -80,8 +80,13 @@ router.post('/', function(req, res) {
 	var l_file = g_filesCollection.find({ path : req.body.path});
 	if ( l_file == 0 ) {
 		g_filesCollection.insert(req.body);
+		registerNewFileExtensionIfNeeded(req.body.extension);
+	} else {
+		l_file[0].additionaldata = req.body.additionaldata;
+		console.log(JSON.stringify(l_file));
+		g_filesCollection.update(l_file);
 	}
-	registerNewFileExtensionIfNeeded(req.body.extension);
+	
 	res.json({});
 });
 
@@ -94,7 +99,11 @@ router.get('/', function(req, res) {
 		if ( l_fileUsages.length > 0 ) {
 			l_usageName = l_fileUsages[0].name;
 		}
-		l_result.push({path : l_files[l_fileIndex].path, name : l_files[l_fileIndex].name, extension : l_files[l_fileIndex].extension, usageName : l_usageName});
+		l_result.push({	path : l_files[l_fileIndex].path, 
+						name : l_files[l_fileIndex].name, 
+						extension : l_files[l_fileIndex].extension, 
+						additionaldata : l_files[l_fileIndex].additionaldata,
+						usageName : l_usageName});
 	}
 	
 	res.json(l_result);
