@@ -1,15 +1,15 @@
 <div container="container fluid" ng-controller="videoFileEditorController">
 	<link rel="stylesheet" href="movie_style.css">
 	<select
-	  ng-model="searched">
-		<option ng-repeat="file in files" ng-value="file.index">{[{file.name}]}</option>
+	  ng-model="selectedFileIndex"  ng-change="fileSelected();">
+		<option ng-repeat="file in files | orderBy:index" ng-value="file.index">{[{file.name}]}</option>
 	</select>
-	<input ng-model="files[searched].name">
+	<input ng-model="searchedTitle">
 	<a class="btn btn-sm btn-primary" ng-click="search()" ><span class="glyphicon glyphicon-refresh"></span> Search</a>
 	<div class="row">
-		<div class="col-md-10">
+		<div class="col-md-12" ng-show="!errorMessage">
 			<!--Body content-->
-			<ul class="movies">
+			<ul class="movies" >
 			  <li ng-repeat="movie in searchResults" class="thumbnail">
 				<a class="moviePosterThumb"><img ng-src="{[{movie.Poster}]}" alt="{[{movie.Title}]}"></a>
 				<label>{[{movie.Title}]}</label>
@@ -17,6 +17,9 @@
 				<a class="btn btn-sm btn-primary" ng-click="storeMovieData(movie)" ><span class="glyphicon glyphicon-refresh"></span> Select</a>
 			  </li>
 			</ul>
+		</div>
+		<div class="col-md-12" ng-show="errorMessage">
+			<div class="alert alert-warning">{[{errorMessage}]}</div>
 		</div>
 	</div>
 </div>

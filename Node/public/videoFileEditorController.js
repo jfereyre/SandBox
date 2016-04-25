@@ -3,8 +3,10 @@
 
 g_testJerome.controller('videoFileEditorController', function($scope,$log,$http) {
 	$scope.searchResults = [];
-	$scope.searched = "";
+	$scope.selectedFileIndex = "";
+	$scope.searchedTitle = "";
 	$scope.files = [];
+	$scope.errorMessage = null;
 	
 	loadFiles = function() {
 		$http.get("/usagemanager").then(function(response) {
@@ -24,8 +26,19 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		$scope.searchResults = a_searchResults;
 	};
 	
+	$scope.fileSelected = function() {
+		var l_file = null;
+		for ( var l_fileIndex=0; l_fileIndex < $scope.files.length; l_fileIndex++ ) {
+			l_file = $scope.files[l_fileIndex];
+			if ( l_file.index == $scope.selectedFileIndex ) {
+				break;
+			}
+		}
+		$scope.searchedTitle=l_file.name.replace("." + l_file.extension, "").replace(/ *\([^)]*\) */g, "");;
+	}
+	
 	$scope.search = function() {
-		var l_movieName = $scope.files[$scope.searched].name.replace("." + $scope.files[$scope.searched].extension, "");	
+		var l_movieName = $scope.searchedTitle.replace("." + $scope.files[$scope.searched].extension, "");	
 		$scope.searchMovieByTitle(l_movieName, searchResultCallback);
 	};
 	
@@ -47,6 +60,7 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 			if ( response.data.Response == "True" ) {
 				a_searchResultCallback(response.data.Search);
 			} else {
+				$scope.errorMessage = response.data.Error;	
 				a_searchResultCallback([]);
 			}
 		});
