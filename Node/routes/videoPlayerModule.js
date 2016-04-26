@@ -24,10 +24,10 @@ router.post('/play', function(req, res) {
 	if( filePaused != null ) {
 		filePlaying = filePaused;
 		filePaused = null;
-		//omxdirector.play();
+		omxdirector.play();
 	} else if ( fileToPlayList.length != 0 ) {
 		filePlaying = fileToPlayList.pop();
-		//omxdirector.play(filePlaying.path, {loop : false, audioOutput : config.get('video_player.audio_output')});
+		omxdirector.play(filePlaying.path, {loop : false, audioOutput : config.get('video_player.audio_output')});
 	}
 	console.log('Play file : ' + filePlaying.path);
 	res.json({});
@@ -36,14 +36,14 @@ router.post('/play', function(req, res) {
 router.post('/pause', function(req, res) {	
 	filePaused = filePlaying;
 	filePlaying = null;
-	//omxdirector.pause();
+	omxdirector.pause();
 	res.json({});
 });
 
 router.post('/stop', function(req, res) {
 	filePlaying = null;
 	filePaused = null;
-	//omxdirector.stop();
+	omxdirector.stop();
 	res.json({});
 });
 

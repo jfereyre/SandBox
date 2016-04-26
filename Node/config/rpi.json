@@ -1,0 +1,11 @@
+{
+  "database" : {
+	"location" : "/media/SEAGATE/sandbox/sandbox.db"
+  },
+  "file_exploration" : {
+	"root_dir" : [ "/home/download", "/media/SEAGATE/MediaFiles"]
+  },
+  "video_player" : {
+	"audio_output" : "hdmi"
+  }
+}

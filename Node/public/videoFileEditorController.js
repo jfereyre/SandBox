@@ -85,6 +85,7 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 	}
 	
 	$scope.searchMovieByTitle = function(a_movieTitle, a_searchResultCallback) {
+		console.log('[' + a_movieTitle + ']');
 		$http.get("http://www.omdbapi.com/?s=%25" + a_movieTitle + "%25&tomatoes=true&plot=full")
 		.then(function(response){ 
 			if ( response.data.Response == "True" ) {
