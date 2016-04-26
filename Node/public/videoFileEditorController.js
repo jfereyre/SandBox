@@ -23,10 +23,15 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 	};
 	
 	searchResultCallback = function(a_searchResults) {
+		for (var l_resultIndex = 0 ; l_resultIndex < a_searchResults.length; l_resultIndex++ ) {
+			if ( a_searchResults[l_resultIndex].Poster.trim() == 'N/A' ) {
+				a_searchResults[l_resultIndex].Poster = null;
+			}
+		}
 		$scope.searchResults = a_searchResults;
 	};
 	
-	$scope.fileSelected = function() {
+	getSelectedFile = function() {
 		var l_file = null;
 		for ( var l_fileIndex=0; l_fileIndex < $scope.files.length; l_fileIndex++ ) {
 			l_file = $scope.files[l_fileIndex];
@@ -34,21 +39,46 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 				break;
 			}
 		}
+		return l_file;
+	}
+	
+	$scope.fileSelected = function() {
+		var l_file = getSelectedFile();
 		$scope.searchedTitle=l_file.name.replace("." + l_file.extension, "").replace(/ *\([^)]*\) */g, "");;
 	}
 	
 	$scope.search = function() {
-		var l_movieName = $scope.searchedTitle.replace("." + $scope.files[$scope.searched].extension, "");	
+		var l_file = getSelectedFile();
+		var l_movieName = $scope.searchedTitle.replace("." + l_file.extension, "");	
 		$scope.searchMovieByTitle(l_movieName, searchResultCallback);
 	};
 	
-	$scope.storeMovieData = function(a_movieData) {
-		if ( ! $scope.files[$scope.searched].additionaldata ) {
-			$scope.files[$scope.searched].additionaldata = {};
+	$scope.createAndStoreMovieData = function() {
+		var l_file = getSelectedFile();
+		if ( ! l_file.additionaldata ) {
+			l_file.additionaldata = {};
 		}
-		$scope.files[$scope.searched].additionaldata.moviedata = a_movieData;
 		
-		$http.post("/usagemanager", $scope.files[$scope.searched])
+		l_file.additionaldata.moviedata = { "Title" : $scope.searchedTitle,
+											"Year" : $scope.searchedMovieYear,
+											"imdbID" : "",
+											"Type" : $scope.searchedMovieType,
+											"Poster" : $scope.searchedMoviePosterURL};
+		
+		$http.post("/usagemanager", l_file)
+		.then(function(response){ 
+			console.log("data saved");
+		});
+	}
+	
+	$scope.storeMovieData = function(a_movieData) {
+		var l_file = getSelectedFile();
+		if ( ! l_file.additionaldata ) {
+			l_file.additionaldata = {};
+		}
+		l_file.additionaldata.moviedata = a_movieData;
+		
+		$http.post("/usagemanager", l_file)
 		.then(function(response){ 
 			console.log("data saved");
 		});
@@ -58,6 +88,7 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		$http.get("http://www.omdbapi.com/?s=%25" + a_movieTitle + "%25&tomatoes=true&plot=full")
 		.then(function(response){ 
 			if ( response.data.Response == "True" ) {
+				console.log(JSON.stringify(response.data.Search));
 				a_searchResultCallback(response.data.Search);
 			} else {
 				$scope.errorMessage = response.data.Error;	

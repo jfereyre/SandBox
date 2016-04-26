@@ -16,6 +16,13 @@
 				<p>{[{movie.Year}]}</p>
 				<a class="btn btn-sm btn-primary" ng-click="storeMovieData(movie)" ><span class="glyphicon glyphicon-refresh"></span> Select</a>
 			  </li>
+			  <li ng-show="searchedTitle" class="thumbnail">
+				<p>Poster URL <input ng-model="searchedMoviePosterURL"><img class="moviePosterThumb" ng-src="{[{searchedMoviePosterURL}]}"></p>
+				<p>Movie title <input ng-model="searchedTitle"></p>
+				<p>Movie year <input ng-model="searchedMovieYear"></p>
+				<p>Movie type <input ng-model="searchedMovieType"></p>
+				<a class="btn btn-sm btn-primary" ng-click="createAndStoreMovieData(movie)" ><span class="glyphicon glyphicon-refresh"></span> Select</a>
+			  </li>
 			</ul>
 		</div>
 		<div class="col-md-12" ng-show="errorMessage">
