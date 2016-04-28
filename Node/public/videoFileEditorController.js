@@ -8,7 +8,7 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 	$scope.files = [];
 	$scope.errorMessage = null;
 	
-	$scope.titleCleaningStrings = ['FRENCH', 'TRUEFRENCH', 'BRRip', 'PDTV', 'DOC', 'MULTI', 'SDTV', 'BDrip', 'XviD', 'AC3', 'mHD', '720p','FRENCH','BluRay','x264', 'X264', 'AAC'];
+	$scope.titleCleaningStrings = ['FRENCH', 'TRUEFRENCH', 'BRRip', 'PDTV', 'DOC', 'MULTI', 'SDTV', 'BDrip', 'BDRip', 'XviD', 'AC3', 'mHD', '720p','FRENCH','BluRay','x264', 'X264', 'AAC', 'DVDRiP', 'XViD', 'LD', 'HDTV']
 	
 	
 	loadFiles = function() {
@@ -56,9 +56,9 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		$scope.searchedTitle=l_file.name.replace("." + l_file.extension, "").replace(/ *\([^)]*\) */g, "");
 		
 						
-		$scope.searchedTitle = $scope.searchedTitle.replace('.', ' ');
+		$scope.searchedTitle = $scope.searchedTitle.replace(/ *\[[^)]*\] */g, "");
 		for (var l_cleanIndex = 0 ; l_cleanIndex < $scope.titleCleaningStrings.length; l_cleanIndex++ ) {
-			$scope.searchedTitle = $scope.searchedTitle.replace($scope.titleCleaningStrings[l_cleanIndex], '');
+			$scope.searchedTitle = $scope.searchedTitle.replace('.'+$scope.titleCleaningStrings[l_cleanIndex], '');
 		}
 	}
 	
