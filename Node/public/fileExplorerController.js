@@ -14,6 +14,12 @@ g_testJerome.controller('fileExplorerController', function($scope, $http, $log, 
 	
 	loadFiles();
 	
+	$scope.$on('tabSelectedEvent', function(event, args) {
+		if ( args.tab_id == 'Files' ) {
+			$scope.refresh();
+		}
+	});
+	
 	$scope.refreshFileList = function() {
 		$http.get("/fileexplorer").then(function(response) {
 			var l_files = response.data.files;

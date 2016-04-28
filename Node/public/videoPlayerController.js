@@ -6,6 +6,13 @@ g_testJerome.controller('videoPlayerController', function($scope, $http, $log, v
 	$scope.filePaused = null;
 	$scope.filesToPlay = [];
 	
+		
+	$scope.$on('tabSelectedEvent', function(event, args) {
+		if ( args.tab_id == 'VideoPlayer' ) {
+			$scope.refresh();
+		}
+	});
+	
 	$scope.playing = function() {
 		var res = $scope.videoPlayer.getPlaying();
 		res.success( function(response) {

@@ -41,6 +41,12 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		}
 		return l_file;
 	}
+		
+	$scope.$on('tabSelectedEvent', function(event, args) {
+		if ( args.tab_id == 'Video File Editor' ) {
+			loadFiles();
+		}
+	});
 	
 	$scope.fileSelected = function() {
 		var l_file = getSelectedFile();
