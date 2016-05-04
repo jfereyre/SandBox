@@ -1,7 +1,7 @@
 // public/videfileeditorcontroller.js
 
 
-g_testJerome.controller('videoFileEditorController', function($scope,$log,$http) {
+g_testJerome.controller('videoFileEditorController', function($scope,$log,$http,$rootScope) {
 	$scope.searchResults = [];
 	$scope.selectedFileIndex = "";
 	$scope.searchedTitle = "";
@@ -51,18 +51,29 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		}
 	});
 	
-	$scope.fileSelected = function() {
+	refresh = function() {
+		$scope.errorMessage = null;
+		$scope.searchResults = [];
+		$scope.selectedFileIndex = "";
+		$scope.searchedTitle = "";
+		$rootScope.$broadcast('tabSelectedEvent', {tab_id : 'Video File Editor'});
+	}
+	
+	$scope.fileSelected = function(a_selectedFileIndex) {
+		$scope.selectedFileIndex = a_selectedFileIndex;
+		$scope.errorMessage = null;
 		var l_file = getSelectedFile();
 		$scope.searchedTitle=l_file.name.replace("." + l_file.extension, "").replace(/ *\([^)]*\) */g, "");
-		
-						
+				
 		$scope.searchedTitle = $scope.searchedTitle.replace(/ *\[[^)]*\] */g, "");
 		for (var l_cleanIndex = 0 ; l_cleanIndex < $scope.titleCleaningStrings.length; l_cleanIndex++ ) {
 			$scope.searchedTitle = $scope.searchedTitle.replace('.'+$scope.titleCleaningStrings[l_cleanIndex], '');
 		}
+		$scope.search();
 	}
 	
 	$scope.search = function() {
+		$scope.errorMessage = null;
 		var l_file = getSelectedFile();
 		var l_movieName = $scope.searchedTitle.replace("." + l_file.extension, "");	
 		
@@ -84,6 +95,7 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		$http.post("/usagemanager", l_file)
 		.then(function(response){ 
 			console.log("data saved");
+			refresh();
 		});
 	}
 	
@@ -97,15 +109,14 @@ g_testJerome.controller('videoFileEditorController', function($scope,$log,$http)
 		$http.post("/usagemanager", l_file)
 		.then(function(response){ 
 			console.log("data saved");
+			refresh();
 		});
 	}
 	
 	$scope.searchMovieByTitle = function(a_movieTitle, a_searchResultCallback) {
-		console.log('[' + a_movieTitle + ']');
 		$http.get("http://www.omdbapi.com/?s=%25" + a_movieTitle + "%25&tomatoes=true&plot=full")
 		.then(function(response){ 
 			if ( response.data.Response == "True" ) {
-				console.log(JSON.stringify(response.data.Search));
 				a_searchResultCallback(response.data.Search);
 			} else {
 				$scope.errorMessage = response.data.Error;	
